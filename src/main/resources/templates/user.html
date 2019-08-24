@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+    </tr>
+    <tr th:each="user : ${userResource.content}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.surname}"></td>
+    </tr>
+</table>
+<div class="row">
+    <div class="col-md-2 hidden-xs hidden-sm"></div>
+    <div class="col-md-8 col-sm-12 text-center">
+        <ul class='pagination'
+            th:attr="pages=${userResource.metadata.totalPages},currentPage=${userResource.metadata.number},self=${userResource.getLink('self').href}">
+        </ul>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/jquery.simplePagination.js"></script>
+</body>
+</html>
